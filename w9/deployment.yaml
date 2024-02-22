@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hestia-deployment
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: hestia-frontend
+        image: nullnummer24/hestia-frontend:V1
+        ports:
+        - containerPort: 3000
+      - name: hestia-backend
+        image: nullnummer24/hestia-frontend:V1
+        env:
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: "123" 
+        - name: POSTGRES_DB
+          value: hestia 
+        ports:
+        - containerPort: 5432
+

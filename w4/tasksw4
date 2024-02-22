@@ -1,0 +1,16 @@
+# Apache2 Image erstellen
+- Zuerst habe ich ein Dockerfile geschrieben.
+    Dockerfile:
+    FROM httpd:2.4
+    MAINTAINER NullNUMMER24
+    COPY index.html /var/www/html/
+    EXPOSE 80
+
+- Danach habe ich das image gebuildet:
+    sudo docker build -t apache-webserver:v1 .
+
+- Mit run kann der apache-container erstellt werden:
+    sudo docker run -it -p 80:80 apache-webserver:v1
+
+- Das ganze lässt sich mit "sudo docker-compose -f ./docker-compose.yml up -d" starten
+

@@ -1,0 +1,17 @@
+services:
+  samba:
+    container_name: ownsmbc
+    build: .
+    ports:
+      - "445:445"
+      - "139:139"
+    volumes:
+      - ./smb.conf:/etc/samba/smb.conf
+      - ./pictures:/mnt/Pictures
+    environment:
+      - user_count=2
+      - user1=admin
+      - password1=123
+      - user2=testt
+      - password2=123
+    restart: always
